@@ -1,0 +1,36 @@
+<h1 mat-dialog-title class="dialog-title">
+  <mat-icon class="title-icon">{{ data.isEditing ? 'edit' : 'add' }}</mat-icon>
+  {{ data.isEditing ? 'Редактирование программы' : 'Новая программа тренировок' }}
+</h1>
+
+<div mat-dialog-content class="dialog-content">
+  <form [formGroup]="form" class="program-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Название программы</mat-label>
+      <input matInput formControlName="name" required placeholder="Моя силовая программа">
+      <mat-icon matSuffix>fitness_center</mat-icon>
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Пожалуйста, введите название
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Описание программы</mat-label>
+      <textarea matInput formControlName="description" rows="4"
+                placeholder="Опишите свою программу..."></textarea>
+      <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+  </form>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-stroked-button (click)="cancel()" class="action-button">
+    <mat-icon>close</mat-icon>
+    Отменить
+  </button>
+  <button mat-raised-button color="primary" (click)="save()" 
+          [disabled]="form.invalid" class="action-button save-button">
+    <mat-icon>{{ data.isEditing ? 'save' : 'add' }}</mat-icon>
+    {{ data.isEditing ? 'Сохранить' : 'Создать' }}
+  </button>
+</div>

@@ -1,0 +1,76 @@
+<form [formGroup]="workoutForm" (ngSubmit)="onSubmit()" class="workout-form">
+  <mat-form-field appearance="fill" class="form-group">
+    <mat-label>Exercise Name</mat-label>
+    <input
+      matInput
+      id="name"
+      type="text"
+      formControlName="name"
+      required
+      placeholder="e.g. Bench Press">
+    <mat-error *ngIf="workoutForm.get('name')?.hasError('required')">
+      Exercise name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-group">
+    <mat-label>Sets</mat-label>
+    <input
+      matInput
+      id="sets"
+      type="number"
+      formControlName="sets"
+      min="1"
+      required>
+    <mat-error *ngIf="workoutForm.get('sets')?.hasError('required')">
+      Sets are required
+    </mat-error>
+    <mat-error *ngIf="workoutForm.get('sets')?.hasError('min')">
+      Minimum 1 set
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-group">
+    <mat-label>Reps</mat-label>
+    <input
+      matInput
+      id="reps"
+      type="number"
+      formControlName="reps"
+      min="1"
+      required>
+    <mat-error *ngIf="workoutForm.get('reps')?.hasError('required')">
+      Reps are required
+    </mat-error>
+    <mat-error *ngIf="workoutForm.get('reps')?.hasError('min')">
+      Minimum 1 rep
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="form-group">
+    <mat-label>Weight (kg)</mat-label>
+    <input
+      matInput
+      id="weight"
+      type="number"
+      formControlName="weight"
+      min="0"
+      required>
+    <mat-error *ngIf="workoutForm.get('weight')?.hasError('required')">
+      Weight is required
+    </mat-error>
+    <mat-error *ngIf="workoutForm.get('weight')?.hasError('min')">
+      Minimum 0 kg
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="!workoutForm.valid"
+    class="submit-button">
+    <mat-icon>{{ workoutToEdit ? 'save' : 'add' }}</mat-icon>
+    {{ workoutToEdit ? 'Update Workout' : 'Create Workout' }}
+  </button>
+</form>

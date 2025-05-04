@@ -1,0 +1,21 @@
+<div class="sidebar">
+  <div class="about-account">
+    <label class="h1">{{username}}</label>
+  </div>
+
+  <div class="btn-sidebar">
+    <button class="btn" mat-raised-button
+            routerLink="/workoutprograms"
+            routerLinkActive="active">
+      <mat-icon>list_alt</mat-icon>
+      Программы
+    </button>
+
+    <div class="btn-sidebar">
+      <button class="btn" mat-raised-button
+              (click)="logout()">
+        <mat-icon>list_alt</mat-icon>
+        Выход
+      </button>
+  </div>
+</div>

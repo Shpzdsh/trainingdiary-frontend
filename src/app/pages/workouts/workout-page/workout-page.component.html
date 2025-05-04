@@ -1,0 +1,31 @@
+<div class="workout-list">
+  <div class="header">
+    <h3>Workouts</h3>
+    <button mat-raised-button color="primary" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon> Add Workout
+    </button>
+  </div>
+
+  <mat-card *ngFor="let workout of workouts" class="workout-item">
+    <mat-card-content>
+      <div class="workout-info">
+        <h4>{{ workout.name }}</h4>
+        <p>Sets: {{ workout.sets }}</p>
+        <p>Reps: {{ workout.reps }}</p>
+        <p>Weight: {{ workout.weight }} kg</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="accent" (click)="router.navigateByUrl(`exercise/workout/${workout.id}`)" class="exercises-button">
+        <mat-icon>fitness_center</mat-icon>
+        Exercises
+      </button>
+      <button mat-icon-button (click)="openEditDialog(workout)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteWorkout(workout.id!)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

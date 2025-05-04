@@ -1,0 +1,53 @@
+.workout-list {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #3f51b5;
+  }
+}
+
+.workout-item {
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.workout-info {
+  h4 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #424242;
+  }
+
+  p {
+    margin: 4px 0;
+    color: #757575;
+  }
+}
+
+mat-card-actions {
+  padding: 8px 16px !important;
+  border-top: 1px solid #eee;
+
+  .exercises-button {
+    margin-right: auto;
+  }
+
+  button {
+    margin-left: 8px;
+  }
+}

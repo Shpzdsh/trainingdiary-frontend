@@ -1,0 +1,70 @@
+<div class="page-container">
+  <div class="header-section">
+    <h1 class="page-title">Мои программы тренировок</h1>
+    <button mat-raised-button color="primary" class="add-button" (click)="openAddProgramDialog()">
+      <mat-icon>add</mat-icon>
+      Добавить программу
+    </button>
+  </div>
+
+  <div *ngIf="programs.length > 0" class="programs-grid">
+    <h2 class="section-title">Ваши программы</h2>
+    <div class="program-cards">
+      <mat-card *ngFor="let program of programs" class="program-card">
+        <app-workout-program
+          [program]="program"
+          (programEdited)="onProgramEdited($event)"
+          (programDeleted)="onProgramDeleted(program.id)">
+        </app-workout-program>
+
+        <div class="program-content">
+          <div class="program-icon">
+            <mat-icon>fitness_center</mat-icon>
+          </div>
+          <div class="program-details">
+            <h3 class="program-id">{{ program.id }}</h3>
+            <h3 class="program-name">{{ program.name || 'Без названия' }}</h3>
+          </div>
+          <p class="program-description" >{{ program.description || 'Без описания' }} </p>
+          <button mat-stroked-button color="primary" (click)="router.navigateByUrl(`workouts/${program.id}/program`)" class="view-button">
+            <mat-icon>visibility</mat-icon>
+            Просмотреть
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- <div *ngIf="programs.length === 0" class="empty-state">
+    <mat-icon class="empty-icon">fitness_center</mat-icon>
+    <h3>У вас пока нет программ тренировок</h3>
+  </div> -->
+
+  <div class="all-programs-section">
+    <h2 class="section-title">Все программы тренировок</h2>
+    <div *ngIf="allPrograms.length > 0" class="all-programs-list">
+      <mat-card *ngFor="let program of allPrograms" class="program-list-item">
+        <div class="program-content">
+          <div class="program-icon">
+            <mat-icon>fitness_center</mat-icon>
+          </div>
+          <div class="program-details">
+            <h3 class="program-id">{{ program.id }}</h3>
+            <h3 class="program-name">{{ program.name || 'Без названия' }}</h3>
+          </div>
+          <p class="program-description" >{{ program.description || 'Без описания' }} </p>
+          <button mat-stroked-button color="primary" [routerLink]="['/workouts', program.id, 'program']" class="view-button">
+            <mat-icon>visibility</mat-icon>
+            Просмотреть
+          </button>
+        </div>
+      </mat-card>
+    </div>
+
+    <div *ngIf="allPrograms.length === 0" class="empty-state">
+      <mat-icon class="empty-icon">search_off</mat-icon>
+      <h3>Нет доступных программ</h3>
+      <p>Попробуйте создать свою программу тренировок</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="exercise-container">
+  <div class="header">
+    <h1>Exercises</h1>
+    <button mat-raised-button color="primary" (click)="openAddDialog()">
+      <mat-icon>add</mat-icon>
+      Add Exercise
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="exercises" class="mat-elevation-z8">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let exercise">{{exercise.name}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="muscleGroup">
+        <th mat-header-cell *matHeaderCellDef>Muscle Group</th>
+        <td mat-cell *matCellDef="let exercise">{{exercise.muscleGroup}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let exercise">{{exercise.description}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let exercise">
+          <button mat-icon-button color="warn" (click)="deleteExercise(exercise.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="exercises.length === 0" class="no-exercises">
+    <mat-icon>fitness_center</mat-icon>
+    <p>No exercises found for this workout</p>
+  </div>
+</div>

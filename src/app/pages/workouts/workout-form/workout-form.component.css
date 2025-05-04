@@ -1,0 +1,15 @@
+.workout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.submit-button {
+  align-self: flex-end;
+  margin-top: 16px;
+}
